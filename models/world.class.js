@@ -62,6 +62,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.enboss);
         this.addObjectsToMap(this.throwableObject);
 
 

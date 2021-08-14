@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2;
     energy = 100;
     lastHit = 0;
+    checkJump = 0;
 
 
 
@@ -14,7 +15,7 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 60);
+        }, 1000 / 25);
     }
 
     isAboveGround() {
@@ -25,19 +26,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
-
-    moveRight() {
-        this.x += this.speed;
-
-
-    }
-
-    moveLeft() {
-        this.x -= this.speed;
-
-    }
-
     playAnimation(images) {
         let i = this.currentImage % images.length
         let path = images[i];
@@ -45,9 +33,32 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    jump() {
-        this.speedY = 25;
+
+    moveRight() {
+        this.x += this.speed;
     }
+
+    moveLeft() {
+        this.x -= this.speed;
+    }
+
+    jump() {
+        this.currentImage = 0;
+        this.SpeedY = 25;
+    }
+
+    isJumping() {
+        return this.speedY > 0 && this.isAboveGround();
+    }
+
+    isLanding() {
+        return this.speedY < 0 && this.isAboveGround();
+    }
+
+    isInAir() {
+        return this.isJumping || this.isLanding();
+    }
+
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
