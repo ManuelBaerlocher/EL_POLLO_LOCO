@@ -6,6 +6,10 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coinBar = new CoinBar();
+    bottleBar = new BottleBar();
+    
+
     throwableObject = [];
 
 
@@ -31,8 +35,8 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.SPACE) {
-            let bottle = new ThrowableObject(this.character.x+ 100, this.character.y +100)
+        if (this.keyboard.SPACE) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObject.push(bottle);
         }
     }
@@ -40,6 +44,13 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+                console.log('Collision with Character, enery ', this.character.energy)
+            }
+        });
+        this.level.enboss.forEach(endboss => {
+            if (this.character.isColliding(endboss)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Character, enery ', this.character.energy)
@@ -57,6 +68,9 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
+        this.addToMap(this.bottleBar);
+        
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.clouds);
