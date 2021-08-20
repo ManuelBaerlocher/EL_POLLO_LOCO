@@ -5,7 +5,8 @@ class MovableObject extends DrawableObject {
     acceleration = 2;
     energy = 100;
     lastHit = 0;
-    checkJump = 0;
+    lastIdle = 0;
+
 
 
 
@@ -44,7 +45,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.currentImage = 0;
-        this.SpeedY = 25;
+        this.speedY = 25;
     }
 
     isJumping() {
@@ -56,7 +57,7 @@ class MovableObject extends DrawableObject {
     }
 
     isInAir() {
-        return this.isJumping || this.isLanding();
+        return this.isJumping() || this.isLanding();
     }
 
 
@@ -84,5 +85,17 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 0.5;
+    }
+
+    longIdle() {
+            this.lastIdle = new Date().getTime();
+            
+    }
+
+    isLongIdle() {
+        let timepassed = new Date().getTime() - this.lastIdle;
+        timepassed = timepassed / 1000;
+        
+        return timepassed > 5;
     }
 }
