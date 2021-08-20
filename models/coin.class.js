@@ -31,8 +31,6 @@ class Coin extends MovableObject{
     resetCloud() {
         if (this.x < 100) {
             this.x = 5300;
-
-
         }
     }
 
