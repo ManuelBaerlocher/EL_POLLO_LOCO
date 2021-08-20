@@ -92,10 +92,18 @@ class MovableObject extends DrawableObject {
             
     }
 
+<<<<<<< HEAD
     isLongIdle() {
+=======
+    /*isLongIdle() {
+>>>>>>> be7066f3df6576c9f4f97583e553591e10f499a8
         let timepassed = new Date().getTime() - this.lastIdle;
         timepassed = timepassed / 1000;
         
         return timepassed > 5;
+<<<<<<< HEAD
     }
+=======
+    }*/
+>>>>>>> be7066f3df6576c9f4f97583e553591e10f499a8
 }
