@@ -1,12 +1,12 @@
-class Character extends MovableObject {
+class Character extends MovableObject { //ist Unterkatogerie von MovableObject
 
     height = 280;
     width = 120;
     y = 150;
-    /*y = 600;*/
-    speed = 5;
 
-    IMAGES_WALKING = [
+    speed = 5; // Geschwindikeit 5
+
+    IMAGES_WALKING = [ //Laufen Pic's
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-23.png',
@@ -15,7 +15,7 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-26.png'
     ];
 
-    IMAGES_JUMPING = [
+    IMAGES_JUMPING = [ // Springen Pic's
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-33.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-34.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-35.png',
@@ -25,7 +25,7 @@ class Character extends MovableObject {
 
     ];
 
-    IMAGES_DEAD = [
+    IMAGES_DEAD = [ // Tot Pic's
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-51.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-52.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-53.png',
@@ -35,32 +35,60 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png'
     ];
 
-    IMAGES_HURT = [
+    IMAGES_HURT = [ //getroffen Pic's
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-41.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-42.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-43.png'
     ];
 
+    IMAGES_IDLE = [
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-1.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-2.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-3.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-4.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-5.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-6.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-7.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-8.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-9.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/IDLE/I-10.png'
+    ];
+
+    IMAGES_LONGIDLE = [
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-11.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-12.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-13.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-14.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-15.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-16.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-17.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-18.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-19.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/1.IDLE/LONG_IDLE/I-20.png',
+    ]
+
 
     world;
-    walking_sound = new Audio('audio/walk.mp3')
+    walking_sound = new Audio('audio/walk.mp3') //gehen sound
 
 
 
     constructor() {
-        super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png');
+        super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png'); // lade pic
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
-        super.applayGravity();
-        this.animate();
+        this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_LONGIDLE);
+        super.applayGravity(); //lade Gravitation
+        this.animate(); // lade animaton
 
     }
 
     animate() {
         setInterval(this.move.bind(this), 1000 / 60);
-        setInterval(this.play.bind(this), 154);
+        setInterval(this.play.bind(this), 167);
     }
 
     move() {
@@ -72,7 +100,7 @@ class Character extends MovableObject {
             this.moveLeft();
         }
         if (this.canJump()) {
-            super.jump();
+            this.jump();
         }
         this.world.camera_x = -this.x + 120;
     }
@@ -80,6 +108,7 @@ class Character extends MovableObject {
     moveRight() {
         super.moveRight();
         this.otherDirection = false;
+
         this.walking_sound.play();
     }
 
@@ -87,18 +116,28 @@ class Character extends MovableObject {
         super.moveLeft();
         this.otherDirection = true;
         this.walking_sound.play();
+
     }
 
     play() {
         if (super.isDead()) {
             super.playAnimation(this.IMAGES_DEAD);
+
         } else if (super.isHurt()) {
             super.playAnimation(this.IMAGES_HURT);
         } else if (super.isAboveGround()) {
             super.playAnimation(this.IMAGES_JUMPING);
-        }/*else {
-            super.playAnimation(this.IMAGES_IDLE); // noch nicht eingefügt wenn er nur da steht!
-        }*/
+            super.longIdle();
+        } else if (this.isMoving()) {
+            super.playAnimation(this.IMAGES_WALKING);
+            super.longIdle();
+        } else if (super.isLongIdle()) {
+            super.playAnimation(this.IMAGES_LONGIDLE);
+        } else {
+            super.playAnimation(this.IMAGES_IDLE);
+
+
+        }
     }
 
     isMoving() {

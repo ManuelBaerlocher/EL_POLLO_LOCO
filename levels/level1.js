@@ -12,12 +12,23 @@ const level1 = new Level(
         new Cloud(4200, 70),
         new Cloud(4900, 20)
     ],
+    [
+        new Cloud(300, 20),
+        new Cloud(1200, 70),
+        new Cloud(2100, 20),
+        new Cloud(2800, 70),
+        new Cloud(3500, 20),
+        new Cloud(4200, 70),
+        new Cloud(4900, 20)
+    ],
     getLevelChickens(),
     getLevelBackground(),
 
 
 
-
+    /*[
+        new Coin()
+    ],*/
 );
 
 
@@ -33,11 +44,11 @@ function getLevelChickens() {
 
 function getChickensCollection(firstX) {
     return [
-        /*new Chicken(firstX + 0 * 100),
+        new Chicken(firstX + 0 * 100),
         new Chicken(firstX + 1 * 100),
         new Chicken(firstX + 2 * 100),
         new Chicken(firstX + 3 * 100),
-        new Chicken(firstX + 4 * 100)*/
+        new Chicken(firstX + 4 * 100)
     ];
 }
 

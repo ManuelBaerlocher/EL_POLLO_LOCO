@@ -21,10 +21,6 @@ class Endboss extends MovableObject {
 
         this.x = 2000;
         this.animate();
-
-
-
-
     }
 
     animate() {
