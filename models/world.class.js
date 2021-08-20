@@ -8,7 +8,7 @@ class World {
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
-    
+
 
     throwableObject = [];
 
@@ -70,7 +70,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
-        
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.clouds);
@@ -79,16 +79,7 @@ class World {
         this.addObjectsToMap(this.level.enboss);
         this.addObjectsToMap(this.throwableObject);
 
-
-
-
         this.ctx.translate(-this.camera_x, 0);
-
-
-
-
-
-
 
         // Draw() wird immer wieder aufgerufen
         let self = this;

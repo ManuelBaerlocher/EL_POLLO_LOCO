@@ -6,6 +6,9 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     lastIdle = 0;
+    stopMoving = false;
+    
+    
 
 
 
@@ -28,10 +31,17 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
+        if(!this.stopMoving) {
+
         let i = this.currentImage % images.length
         let path = images[i];
+        if(path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png'){
+            this.stopMoving = true;
+        }
         this.img = this.imageCache[path];
+        
         this.currentImage++;
+    }
     }
 
 
@@ -69,7 +79,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 2;
+        this.energy -= 10;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

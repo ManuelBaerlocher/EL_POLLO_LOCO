@@ -71,6 +71,8 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
     world;
     walking_sound = new Audio('audio/walk.mp3') //gehen sound
 
+    stopMoving = false;
+
 
 
     constructor() {
@@ -93,17 +95,19 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
     }
 
     move() {
-        this.walking_sound.pause();
-        if (this.canMoveRight()) {
-            this.moveRight();
+        if (!this.stopMoving) {
+            this.walking_sound.pause();
+            if (this.canMoveRight()) {
+                this.moveRight();
+            }
+            if (this.canMoveLeft()) {
+                this.moveLeft();
+            }
+            if (this.canJump()) {
+                this.jump();
+            }
+            this.world.camera_x = -this.x + 120;
         }
-        if (this.canMoveLeft()) {
-            this.moveLeft();
-        }
-        if (this.canJump()) {
-            this.jump();
-        }
-        this.world.camera_x = -this.x + 120;
     }
 
     moveRight() {
@@ -123,7 +127,6 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
     play() {
         if (super.isDead()) {
             super.playAnimation(this.IMAGES_DEAD);
-
         } else if (super.isHurt()) {
             super.playAnimation(this.IMAGES_HURT);
         } else if (super.isAboveGround()) {
