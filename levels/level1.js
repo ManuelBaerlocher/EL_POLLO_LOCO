@@ -12,23 +12,12 @@ const level1 = new Level(
         new Cloud(4200, 70),
         new Cloud(4900, 20)
     ],
-    [
-        new Cloud(300, 20),
-        new Cloud(1200, 70),
-        new Cloud(2100, 20),
-        new Cloud(2800, 70),
-        new Cloud(3500, 20),
-        new Cloud(4200, 70),
-        new Cloud(4900, 20)
-    ],
     getLevelChickens(),
     getLevelBackground(),
 
 
 
-    /*[
-        new Coin()
-    ],*/
+
 );
 
 

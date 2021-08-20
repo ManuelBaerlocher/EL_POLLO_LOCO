@@ -83,6 +83,7 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
         this.loadImages(this.IMAGES_LONGIDLE);
         super.applayGravity(); //lade Gravitation
         this.animate(); // lade animaton
+        super.longIdle();
 
     }
 
