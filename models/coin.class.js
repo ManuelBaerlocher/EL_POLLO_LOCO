@@ -1,39 +1,27 @@
-class Coin extends MovableObject{
+class Coin extends MovableObject {
 
     height = 160;
     width = 160;
 
+    IMAGES_COINS = [
+        'img/8.Coin/Moneda1.png',
+        'img/8.Coin/Moneda2.png'
+    ];
+
 
     constructor(x, y) {
         super().loadImage('img/8.Coin/Moneda1.png');
+        this.loadImages(this.IMAGES_COINS);
         this.x = x;
         this.y = y;
 
-        /*this.animate();
-        this.checkResetCloud(x);*/
-
-
-
+        this.animate();
     }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+            this.playAnimation(this.IMAGES_COINS)
+        }, 360);
     }
-
-    checkResetCloud(x) {
-        setInterval(() => {
-            this.resetCloud(x);
-        }, 2000);
-    }
-
-    resetCloud() {
-        if (this.x < 100) {
-            this.x = 5300;
-        }
-    }
-
-
 }
-    
+

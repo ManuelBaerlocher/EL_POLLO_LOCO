@@ -48,7 +48,7 @@ class World {
         //bottle
     }
 
-    collisionEnemy(){
+    collisionEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 this.hitanimation();
@@ -56,7 +56,7 @@ class World {
         });
     }
 
-    collisionEndboss(){
+    collisionEndboss() {
         this.level.enboss.forEach(endboss => {
             if (this.character.isColliding(endboss)) {
                 this.hitanimation();
@@ -64,21 +64,23 @@ class World {
         });
     }
 
-    collisionCoin(){
+    collisionCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 console.log(coin)
+                let coin = new Coin(this.character.x + 100, this.character.y + 100)
+                this.movable-object.push(coin);
             }
         });
     }
 
-    
-    
 
-    hitanimation(){
+
+
+    hitanimation() {
         this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-                console.log('Collision with Character, enery ', this.character.energy)
+        this.statusBar.setPercentage(this.character.energy);
+        console.log('Collision with Character, enery ', this.character.energy)
     }
 
 
