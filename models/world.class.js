@@ -42,20 +42,43 @@ class World {
     }
 
     checkCollisions() {
+        this.collisionEnemy();
+        this.collisionEndboss();
+        this.collisionCoin();
+        //bottle
+    }
+
+    collisionEnemy(){
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-                console.log('Collision with Character, enery ', this.character.energy)
+                this.hitanimation();
             }
         });
+    }
+
+    collisionEndboss(){
         this.level.enboss.forEach(endboss => {
             if (this.character.isColliding(endboss)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-                console.log('Collision with Character, enery ', this.character.energy)
+                this.hitanimation();
             }
         });
+    }
+
+    collisionCoin(){
+        this.level.coins.forEach(coin => {
+            if (this.character.isColliding(coin)) {
+                console.log(coin)
+            }
+        });
+    }
+
+    
+    
+
+    hitanimation(){
+        this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+                console.log('Collision with Character, enery ', this.character.energy)
     }
 
 

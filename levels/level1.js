@@ -15,9 +15,11 @@ const level1 = new Level(
 
     [
         new Coin(300, 150),
-        new Coin(400, 150),
-        new Coin(500, 150),
+        new Coin(600, 150),
+        new Coin(900, 150),
     ],
+
+    
 
     getLevelChickens(),
     getLevelBackground(),
@@ -40,11 +42,11 @@ function getLevelChickens() {
 
 function getChickensCollection(firstX) {
     return [
-        new Chicken(firstX + 0 * 100),
+        /*new Chicken(firstX + 0 * 100),
         new Chicken(firstX + 1 * 100),
         new Chicken(firstX + 2 * 100),
         new Chicken(firstX + 3 * 100),
-        new Chicken(firstX + 4 * 100)
+        new Chicken(firstX + 4 * 100)*/
     ];
 }
 
