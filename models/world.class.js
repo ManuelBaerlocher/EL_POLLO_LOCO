@@ -8,6 +8,8 @@ class World {
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    coinCounter = 0;
+    
 
 
     throwableObject = [];
@@ -67,12 +69,28 @@ class World {
     collisionCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                console.log(coin)
-                let coin = new Coin(this.character.x + 100, this.character.y + 100)
-                this.movable-object.push(coin);
+                
+                
+                this.currentCoinremove(coin)
             }
         });
     }
+
+    currentCoinremove(coin) {
+        coin = coin['x']
+
+        for (let i = 0; i < this.level.coins.length; i++) {
+            let currentCoin = this.level.coins[i]['x'];
+
+            if (coin == currentCoin) {
+                this.level.coins.splice(i, 1)
+                this.coinCounter ++;
+                console.log(this.coinCounter)
+            }
+        }
+    }
+
+
 
 
 

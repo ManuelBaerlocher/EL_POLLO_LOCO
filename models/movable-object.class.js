@@ -9,6 +9,7 @@ class MovableObject extends DrawableObject {
     stopMoving = false;
     
     
+    
 
 
 
@@ -108,4 +109,6 @@ class MovableObject extends DrawableObject {
         
         return timepassed > 5;
     }
+
+    
 }
