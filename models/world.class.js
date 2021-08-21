@@ -9,7 +9,8 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     coinCounter = 0;
-    
+    coinLenght = 0;
+
 
 
     throwableObject = [];
@@ -22,6 +23,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.coinLenght = this.level.coins.length;
 
     }
 
@@ -69,9 +71,10 @@ class World {
     collisionCoin() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                
-                
+
+
                 this.currentCoinremove(coin)
+                this.collectCoinbarSet();
             }
         });
     }
@@ -84,8 +87,7 @@ class World {
 
             if (coin == currentCoin) {
                 this.level.coins.splice(i, 1)
-                this.coinCounter ++;
-                console.log(this.coinCounter)
+                this.coinCounter++;
             }
         }
     }
@@ -99,6 +101,15 @@ class World {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
         console.log('Collision with Character, enery ', this.character.energy)
+    }
+
+    collectCoinbarSet() {
+
+        console.log(this.coinLenght)
+        let percentage = 100 / this.coinLenght * this.coinCounter;
+
+        this.coinBar.setPercentage(percentage);
+        /*this.coinBar.setPercentage(this.coinBar.percentage);*/
     }
 
 
