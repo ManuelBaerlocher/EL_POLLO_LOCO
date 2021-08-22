@@ -2,12 +2,12 @@ class BottleBar extends DrawableObject {
 
 
     IMAGES_BOTTLE = [
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/0_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/20_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/80_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/100_.png'
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/0_.png',
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/20_.png',
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/40_.png',
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/60_.png',
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/80_.png',
+        'img/7.Marcadores/Barra/Marcador_botella/Naranja/100_.png'
     ];
 
     percentage = 0;

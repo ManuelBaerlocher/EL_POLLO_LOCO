@@ -19,6 +19,12 @@ const level1 = new Level(
         new Coin(900, 150),
     ],
 
+    [
+        new Bottle(200),
+        new Bottle(500),
+        new Bottle(800),
+    ],
+
     
 
     getLevelChickens(),

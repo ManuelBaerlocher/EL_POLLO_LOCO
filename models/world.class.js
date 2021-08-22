@@ -10,6 +10,8 @@ class World {
     bottleBar = new BottleBar();
     coinCounter = 0;
     coinLenght = 0;
+    bottleCounter = 0;
+    bottleLenght = 0;
 
 
 
@@ -24,6 +26,7 @@ class World {
         this.setWorld();
         this.run();
         this.coinLenght = this.level.coins.length;
+        this.bottleLenght = this.level.bottles.length;
 
     }
 
@@ -49,7 +52,7 @@ class World {
         this.collisionEnemy();
         this.collisionEndboss();
         this.collisionCoin();
-        //bottle
+        this.collisionBottle();
     }
 
     collisionEnemy() {
@@ -79,6 +82,17 @@ class World {
         });
     }
 
+    collisionBottle() {
+        this.level.bottles.forEach(bottle => {
+            if (this.character.isColliding(bottle)) {
+
+
+                this.currentBottleremove(bottle)
+                this.collectBottlebarSet();
+            }
+        });
+    }
+
     currentCoinremove(coin) {
         coin = coin['x']
 
@@ -88,6 +102,19 @@ class World {
             if (coin == currentCoin) {
                 this.level.coins.splice(i, 1)
                 this.coinCounter++;
+            }
+        }
+    }
+
+    currentBottleremove(bottle) {
+        bottle = bottle['x']
+
+        for (let i = 0; i < this.level.bottles.length; i++) {
+            let currentBottle = this.level.bottles[i]['x'];
+
+            if (bottle == currentBottle) {
+                this.level.bottles.splice(i, 1)
+                this.bottleCounter++;
             }
         }
     }
@@ -109,7 +136,14 @@ class World {
         let percentage = 100 / this.coinLenght * this.coinCounter;
 
         this.coinBar.setPercentage(percentage);
-        /*this.coinBar.setPercentage(this.coinBar.percentage);*/
+    }
+
+    collectBottlebarSet() {
+
+        console.log(this.bottleLenght)
+        let percentage = 100 / this.bottleLenght * this.bottleCounter;
+
+        this.bottleBar.setPercentage(percentage);
     }
 
 
@@ -129,6 +163,7 @@ class World {
 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.enboss);
