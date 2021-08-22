@@ -98,13 +98,19 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
         if (!this.stopMoving) {
             this.walking_sound.pause();
             if (this.canMoveRight()) {
-                this.moveRight();
+                if (this.energy > 0) {
+                    this.moveRight();
+                }
             }
             if (this.canMoveLeft()) {
-                this.moveLeft();
+                if (this.energy > 0) {
+                    this.moveLeft();
+                }
             }
             if (this.canJump()) {
-                this.jump();
+                if (this.energy > 0) {
+                    this.jump();
+                }
             }
             this.world.camera_x = -this.x + 120;
         }

@@ -42,13 +42,14 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.bottleCounter > 0) {
-            if (this.keyboard.SPACE) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
-                this.throwableObject.push(bottle);
-                this.bottleCounter--;
-                console.log('Bottle', this.bottleCounter);
-                this.collectBottlebarSet();
+        if (this.character.energy > 0) {
+            if (this.bottleCounter > 0) {
+                if (this.keyboard.SPACE) {
+                    let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+                    this.throwableObject.push(bottle);
+                    this.bottleCounter--;
+                    this.collectBottlebarSet();
+                }
             }
         }
     }
