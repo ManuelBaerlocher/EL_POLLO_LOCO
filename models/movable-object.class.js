@@ -7,9 +7,9 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastIdle = 0;
     stopMoving = false;
-    
-    
-    
+
+
+
 
 
 
@@ -25,24 +25,24 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true;
+            return this.y < 350;
         } else {
             return this.y < 150;
         }
     }
 
     playAnimation(images) {
-        if(!this.stopMoving) {
+        if (!this.stopMoving) {
 
-        let i = this.currentImage % images.length
-        let path = images[i];
-        if(path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png'){
-            this.stopMoving = true;
+            let i = this.currentImage % images.length
+            let path = images[i];
+            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'))  {
+                this.stopMoving = true;
+            }
+            this.img = this.imageCache[path];
+
+            this.currentImage++;
         }
-        this.img = this.imageCache[path];
-        
-        this.currentImage++;
-    }
     }
 
 
@@ -70,6 +70,19 @@ class MovableObject extends DrawableObject {
     isInAir() {
         return this.isJumping() || this.isLanding();
     }
+
+    isBottleFly() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+
+
+
 
 
     isColliding(mo) {
@@ -99,16 +112,16 @@ class MovableObject extends DrawableObject {
     }
 
     longIdle() {
-            this.lastIdle = new Date().getTime();
-            
+        this.lastIdle = new Date().getTime();
+
     }
 
     isLongIdle() {
         let timepassed = new Date().getTime() - this.lastIdle;
         timepassed = timepassed / 1000;
-        
+
         return timepassed > 5;
     }
 
-    
+
 }

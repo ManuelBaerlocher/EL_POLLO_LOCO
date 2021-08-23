@@ -38,8 +38,31 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkRemoveBottle();
         }, 200);
     }
+
+    checkRemoveBottle() {
+        if (this.throwableObject.length > 0) {
+            for (let i = 0; i < this.throwableObject.length; i++) {
+                let bottleY = this.throwableObject[i]['y'];
+
+
+                if (bottleY == 358) {
+                    
+                    console.log(this.throwableObject[i])
+                    this.throwableObject.splice(i, 1)
+
+                }
+            }
+        }
+
+    }
+
+    removeSplashBottle(i) {
+
+    }
+
 
     checkThrowObjects() {
         if (this.character.energy > 0) {
@@ -108,6 +131,7 @@ class World {
             if (coin == currentCoin) {
                 this.level.coins.splice(i, 1)
                 this.coinCounter++;
+
             }
         }
     }
@@ -213,6 +237,10 @@ class World {
     flipImageBack(mo) {
         this.ctx.restore();
         mo.x = mo.x * -1;
+    }
+
+    removeBotte() {
+        this.throwableObject.splice(0, 1);
     }
 
 
