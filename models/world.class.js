@@ -55,7 +55,7 @@ class World {
         }
 
     }
- 
+
     checkThrowObjects() {
         if (this.character.energy > 0) {
             if (this.bottleCounter > 0) {
@@ -88,11 +88,26 @@ class World {
 
     collisionBottlewithEndboss() {
         this.level.enboss.forEach(endboss => {
-            if (this.bottlehit.isColliding(endboss)) {
-                console.log('treffer')
+            if (this.throwableObject.length > 0) {
+                if (this.throwableObject[0].isColliding(endboss)) {
+                    
+                    console.log('hitEndboss')
+                    this.bottlehit.BottleColliding = true;
+                    
+
+                    
+                    
+
+                }
             }
         });
     }
+
+    isColliding(back) {
+        return back;
+    }
+ 
+
 
     collisionEnemy() {
         this.level.enemies.forEach(enemy => {

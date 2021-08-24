@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastIdle = 0;
     stopMoving = false;
+    BottleColliding = false;
 
 
 
@@ -121,6 +122,16 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000;
 
         return timepassed > 5;
+    }
+
+    isBottleColliding() {
+       
+           
+           if(this.BottleColliding){
+            
+               return true;
+           }
+       
     }
 
 

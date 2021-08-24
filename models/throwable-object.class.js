@@ -41,7 +41,7 @@ class ThrowableObject extends MovableObject {
             if (!this.isAboveGround()) {
                 this.x += 0;
                 this.bottleSplash = true;
-                
+
             } else {
                 this.x += 12;
                 this.bottleSplash = false;
@@ -58,12 +58,12 @@ class ThrowableObject extends MovableObject {
     }
 
     play() {
-        if (false/*super.isHit()*/) {
+        if (this.isBottleColliding()) {
+            this.x += 0;
+            this.y += 0;
             this.playAnimation(this.IMAGES_SPLASH);
         } else if (!this.isAboveGround()) {
             this.playAnimation(this.IMAGES_SPLASH);
-            
-
         } else {
             this.playAnimation(this.IMAGES_BOTTLES);
         }
