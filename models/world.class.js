@@ -8,6 +8,7 @@ class World {
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    bottlehit = new ThrowableObject();
     coinCounter = 0;
     coinLenght = 0;
     bottleCounter = 0;
@@ -47,23 +48,14 @@ class World {
             for (let i = 0; i < this.throwableObject.length; i++) {
                 let bottleY = this.throwableObject[i]['y'];
 
-
                 if (bottleY == 358) {
-                    
-                    console.log(this.throwableObject[i])
                     this.throwableObject.splice(i, 1)
-
                 }
             }
         }
 
     }
-
-    removeSplashBottle(i) {
-
-    }
-
-
+ 
     checkThrowObjects() {
         if (this.character.energy > 0) {
             if (this.bottleCounter > 0) {
@@ -82,6 +74,24 @@ class World {
         this.collisionEndboss();
         this.collisionCoin();
         this.collisionBottle();
+        this.collisionBottlewithEnemy();
+        this.collisionBottlewithEndboss();
+    }
+
+    collisionBottlewithEnemy() {
+        this.level.enemies.forEach(enemy => {
+            if (this.bottlehit.isColliding(enemy)) {
+                console.log('treffer')
+            }
+        });
+    }
+
+    collisionBottlewithEndboss() {
+        this.level.enboss.forEach(endboss => {
+            if (this.bottlehit.isColliding(endboss)) {
+                console.log('treffer')
+            }
+        });
     }
 
     collisionEnemy() {
