@@ -91,7 +91,7 @@ class World {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
                     
-                    console.log('hitEndboss')
+                    
                     this.bottlehit.BottleColliding = true;
                     
 
@@ -103,9 +103,6 @@ class World {
         });
     }
 
-    isColliding(back) {
-        return back;
-    }
  
 
 

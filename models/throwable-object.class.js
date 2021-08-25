@@ -41,33 +41,34 @@ class ThrowableObject extends MovableObject {
             if (!this.isAboveGround()) {
                 this.x += 0;
                 this.bottleSplash = true;
-
             } else {
-                this.x += 12;
-                this.bottleSplash = false;
-            }
+            this.x += 12;
+            this.bottleSplash = false;
+        }
         }, 20);
         this.animate();
 
     }
 
-    animate() {
-        setInterval(() => {
-            this.play();
-        }, 100);
+animate() {
+    setInterval(() => {
+        this.play();
+    }, 100);
+}
+
+play() {
+    if (this.isBottleColliding()) {
+        console.log('hitEndboss')
+        this.playAnimation(this.IMAGES_SPLASH);
+        
+    } else if (!this.isAboveGround()) {
+        this.playAnimation(this.IMAGES_SPLASH);
+        this.BottleColliding = false;
+    } else {
+        this.playAnimation(this.IMAGES_BOTTLES);
+        this.BottleColliding = false;
     }
 
-    play() {
-        if (this.isBottleColliding()) {
-            this.x += 0;
-            this.y += 0;
-            this.playAnimation(this.IMAGES_SPLASH);
-        } else if (!this.isAboveGround()) {
-            this.playAnimation(this.IMAGES_SPLASH);
-        } else {
-            this.playAnimation(this.IMAGES_BOTTLES);
-        }
 
-
-    }
+}
 }
