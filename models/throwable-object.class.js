@@ -18,6 +18,10 @@ class ThrowableObject extends MovableObject {
     ];
 
     bottleSplash = false;
+    hitX;
+    hitY;
+
+
 
     constructor(x, y) {
         super().loadImage('img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png');
@@ -35,40 +39,50 @@ class ThrowableObject extends MovableObject {
 
 
     trow() {
+
         this.speedY = 22;
         this.applayGravity();
         setInterval(() => {
-            if (!this.isAboveGround()) {
+            if (this.hitSomething) {
+                
+                this.x += 0;
+                
+            } else if (!this.isAboveGround()) {
                 this.x += 0;
                 this.bottleSplash = true;
             } else {
-            this.x += 12;
-            this.bottleSplash = false;
-        }
+                this.x += 12;
+                this.bottleSplash = false;
+            }
         }, 20);
+
         this.animate();
 
-    }
 
-animate() {
-    setInterval(() => {
-        this.play();
-    }, 100);
-}
 
-play() {
-    if (this.isBottleColliding()) {
-        console.log('hitEndboss')
-        this.playAnimation(this.IMAGES_SPLASH);
-        
-    } else if (!this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_SPLASH);
-        this.BottleColliding = false;
-    } else {
-        this.playAnimation(this.IMAGES_BOTTLES);
-        this.BottleColliding = false;
     }
 
 
-}
+
+
+    animate() {
+        setInterval(() => {
+            this.play();
+        }, 100);
+    }
+
+    play() {
+        if (this.hitSomething) {
+            this.playAnimation(this.IMAGES_SPLASH);
+
+        } else if (!this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_SPLASH);
+            this.BottleColliding = false;
+        } else {
+            this.playAnimation(this.IMAGES_BOTTLES);
+            this.BottleColliding = false;
+        }
+
+
+    }
 }

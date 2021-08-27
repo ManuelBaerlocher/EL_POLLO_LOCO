@@ -7,14 +7,18 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastIdle = 0;
     stopMoving = false;
-    BottleColliding = false;
+    bottleColliding = false;
+    hitSomething = false;
 
 
     applayGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
-                this.y -= this.speedY;
-                this.speedY -= this.acceleration;
+
+                if(!this.hitSomething) {
+                    this.y -= this.speedY;
+                    this.speedY -= this.acceleration;
+                }
             }
         }, 1000 / 25);
     }
@@ -121,13 +125,7 @@ class MovableObject extends DrawableObject {
         return timepassed > 5;
     }
 
-    isBottleColliding() {
-
-        if (this.BottleColliding) {
-
-            return true;
-        }
-    }
+ 
 
 
 }

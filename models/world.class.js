@@ -11,7 +11,7 @@ class World {
     bottlehit = new ThrowableObject();
     coinCounter = 0;
     coinLenght = 0;
-    bottleCounter = 0;
+    bottleCounter = 1000;
     bottleLenght = 0;
 
 
@@ -26,6 +26,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.bottleColliding();
+        this.checkBottleRemove();
         this.coinLenght = this.level.coins.length;
         this.bottleLenght = this.level.bottles.length;
 
@@ -39,8 +41,21 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-            this.checkRemoveBottle();
+
         }, 200);
+    }
+
+    bottleColliding() {
+        setInterval(() => {
+            this.collisionBottlewithEnemy();
+            this.collisionBottlewithEndboss();
+        }, 20);
+    }
+
+    checkBottleRemove() {
+        setInterval(() => {
+            this.checkRemoveBottle();
+        }, 1000);
     }
 
     checkRemoveBottle() {
@@ -48,7 +63,7 @@ class World {
             for (let i = 0; i < this.throwableObject.length; i++) {
                 let bottleY = this.throwableObject[i]['y'];
 
-                if (bottleY == 358) {
+                if (bottleY == 358 || this.throwableObject[0].hitSomething) {
                     this.throwableObject.splice(i, 1)
                 }
             }
@@ -64,6 +79,7 @@ class World {
                     this.throwableObject.push(bottle);
                     this.bottleCounter--;
                     this.collectBottlebarSet();
+                    this.character.longIdle();
                 }
             }
         }
@@ -74,8 +90,7 @@ class World {
         this.collisionEndboss();
         this.collisionCoin();
         this.collisionBottle();
-        this.collisionBottlewithEnemy();
-        this.collisionBottlewithEndboss();
+
     }
 
     collisionBottlewithEnemy() {
@@ -91,13 +106,16 @@ class World {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
 
-                console.log('Endboss hit with Bottle!')
+                    this.throwableObject[0].hitSomething = true;
+
+                    console.log('Endboss hit with Bottle!')
+
                 }
             }
         });
     }
 
- 
+
 
 
     collisionEnemy() {
@@ -107,6 +125,16 @@ class World {
             }
         });
     }
+
+    /*
+    if(this.isColliding(chicken)) {
+    if (this.isFalling()) {
+        // Chicken dies
+    } else {
+        // this.energy--;
+    }*/
+
+
 
     collisionEndboss() {
         this.level.enboss.forEach(endboss => {
