@@ -90,14 +90,8 @@ class World {
         this.level.enboss.forEach(endboss => {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
-                    
-                    
-                    this.bottlehit.BottleColliding = true;
-                    
 
-                    
-                    
-
+                console.log('Endboss hit with Bottle!')
                 }
             }
         });

@@ -10,11 +10,6 @@ class MovableObject extends DrawableObject {
     BottleColliding = false;
 
 
-
-
-
-
-
     applayGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -37,7 +32,7 @@ class MovableObject extends DrawableObject {
 
             let i = this.currentImage % images.length
             let path = images[i];
-            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'))  {
+            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png')) {
                 this.stopMoving = true;
             }
             this.img = this.imageCache[path];
@@ -77,14 +72,16 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-            }
+            } 
         }, 1000 / 25);
     }
 
-
-
-
-
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    }
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
@@ -125,13 +122,11 @@ class MovableObject extends DrawableObject {
     }
 
     isBottleColliding() {
-       
-           
-           if(this.BottleColliding){
-            
-               return true;
-           }
-       
+
+        if (this.BottleColliding) {
+
+            return true;
+        }
     }
 
 
