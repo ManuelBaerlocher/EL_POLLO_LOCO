@@ -26,7 +26,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.bottleColliding();
+        this.twentyMsRun();
         this.checkBottleRemove();
         this.coinLenght = this.level.coins.length;
         this.bottleLenght = this.level.bottles.length;
@@ -39,16 +39,17 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            
             this.checkThrowObjects();
 
         }, 200);
     }
 
-    bottleColliding() {
+    twentyMsRun() {
         setInterval(() => {
             this.collisionBottlewithEnemy();
             this.collisionBottlewithEndboss();
+            this.checkCollisions();
         }, 20);
     }
 
@@ -57,6 +58,8 @@ class World {
             this.checkRemoveBottle();
         }, 1000);
     }
+
+
 
     checkRemoveBottle() {
         if (this.throwableObject.length > 0) {
@@ -95,8 +98,15 @@ class World {
 
     collisionBottlewithEnemy() {
         this.level.enemies.forEach(enemy => {
-            if (this.bottlehit.isColliding(enemy)) {
-                console.log('treffer')
+            if (this.throwableObject.length > 0) {
+                if (this.throwableObject[0].isColliding(enemy)) {
+
+                    this.throwableObject[0].hitSomething = true;
+  
+                    console.log('Chicken hit with Bottle!')
+                    this.currentEnemyremove(enemy);
+
+                }
             }
         });
     }
@@ -121,20 +131,15 @@ class World {
     collisionEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
-                this.hitanimation();
+                if (this.character.isInAir()) {
+                    console.log('Chicken dies')
+                this.currentEnemyremove(enemy);
+                } else {
+                    this.hitanimation();
+                }
             }
         });
     }
-
-    /*
-    if(this.isColliding(chicken)) {
-    if (this.isFalling()) {
-        // Chicken dies
-    } else {
-        // this.energy--;
-    }*/
-
-
 
     collisionEndboss() {
         this.level.enboss.forEach(endboss => {
@@ -148,7 +153,6 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
 
-
                 this.currentCoinremove(coin)
                 this.collectCoinbarSet();
             }
@@ -158,7 +162,6 @@ class World {
     collisionBottle() {
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
-
 
                 this.currentBottleremove(bottle)
                 this.collectBottlebarSet();
@@ -189,6 +192,21 @@ class World {
             if (bottle == currentBottle) {
                 this.level.bottles.splice(i, 1)
                 this.bottleCounter++;
+            }
+        }
+    }
+
+    currentEnemyremove(chicken) {
+        chicken = chicken['x']
+
+        for (let i = 0; i < this.level.enemies.length; i++) {
+            let currentEnemy = this.level.enemies[i]['x'];
+
+            if (chicken == currentEnemy) {
+                this.level.enemies[i].chickenDead = true;
+                this.level.enemies.splice(i, 1)
+                
+
             }
         }
     }

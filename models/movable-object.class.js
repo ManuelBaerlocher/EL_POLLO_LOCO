@@ -9,6 +9,7 @@ class MovableObject extends DrawableObject {
     stopMoving = false;
     bottleColliding = false;
     hitSomething = false;
+    chickenDead = false;
 
 
     applayGravity() {
