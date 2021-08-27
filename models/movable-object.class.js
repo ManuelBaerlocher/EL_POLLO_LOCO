@@ -16,7 +16,7 @@ class MovableObject extends DrawableObject {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
 
-                if(!this.hitSomething) {
+                if (!this.hitSomething) {
                     this.y -= this.speedY;
                     this.speedY -= this.acceleration;
                 }
@@ -37,7 +37,7 @@ class MovableObject extends DrawableObject {
 
             let i = this.currentImage % images.length
             let path = images[i];
-            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png')) {
+            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png') || (path == 'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png')) {
                 this.stopMoving = true;
             }
             this.img = this.imageCache[path];
@@ -77,7 +77,7 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-            } 
+            }
         }, 1000 / 25);
     }
 
@@ -96,7 +96,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 10;
+        this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -126,7 +126,7 @@ class MovableObject extends DrawableObject {
         return timepassed > 5;
     }
 
- 
+
 
 
 }

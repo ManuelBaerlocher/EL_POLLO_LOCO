@@ -5,13 +5,14 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    endboss = new Endboss();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     bottlehit = new ThrowableObject();
     coinCounter = 0;
     coinLenght = 0;
-    bottleCounter = 1000;
+    bottleCounter = 0;
     bottleLenght = 0;
 
 
@@ -112,10 +113,11 @@ class World {
     }
 
     collisionBottlewithEndboss() {
-        this.level.enboss.forEach(endboss => {
+        this.level.endboss.forEach(endboss => {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
 
+                    this.hitanimationEndboss();
                     this.throwableObject[0].hitSomething = true;
 
                     console.log('Endboss hit with Bottle!')
@@ -142,7 +144,7 @@ class World {
     }
 
     collisionEndboss() {
-        this.level.enboss.forEach(endboss => {
+        this.level.endboss.forEach(endboss => {
             if (this.character.isColliding(endboss)) {
                 this.hitanimation();
             }
@@ -222,6 +224,12 @@ class World {
         console.log('Collision with Character, enery ', this.character.energy)
     }
 
+    hitanimationEndboss() {
+        this.endboss.hit();
+        console.log('Collision with Bottle ', this.endboss.energy)
+
+    }
+
     collectCoinbarSet() {
 
 
@@ -258,7 +266,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.enboss);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObject);
 
         this.ctx.translate(-this.camera_x, 0);

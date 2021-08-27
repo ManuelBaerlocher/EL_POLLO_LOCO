@@ -44,9 +44,7 @@ class ThrowableObject extends MovableObject {
         this.applayGravity();
         setInterval(() => {
             if (this.hitSomething) {
-                
                 this.x += 0;
-                
             } else if (!this.isAboveGround()) {
                 this.x += 0;
                 this.bottleSplash = true;
