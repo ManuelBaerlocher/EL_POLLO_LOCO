@@ -2,7 +2,7 @@ class Endboss extends MovableObject {
 
     height = 400;
     width = 350;
-    y = 50
+    y = 60;
 
     IMAGES_WALKING = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
@@ -60,7 +60,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
 
-        this.x = 400;
+        this.x = 1500;
         this.animate();
 
 
@@ -69,11 +69,28 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        /*setInterval(this.move.bind(this), 1000 / 60);*/
+        setInterval(this.move.bind(this), 1000 / 60);
         setInterval(() => {
             this.play();
-        }, 200);
+        }, 400);
+
+
     }
+
+    move() {
+        
+        if (!this.stopMoving) {
+        }
+        if (this.canMoveLeft()) {
+            if (this.energy > 0) {
+                this.moveLeft();
+                console.log('walk left')
+            }
+        }
+
+
+    }
+
 
 
     play() {
@@ -81,8 +98,27 @@ class Endboss extends MovableObject {
             super.playAnimation(this.IMAGES_DEAD);
         } else if (super.isHurt()) {
             super.playAnimation(this.IMAGES_HURT);
+        } else if (this.isMoving()) {
+            super.playAnimation(this.IMAGES_WALKING);
         } else {
-            this.playAnimation(this.IMAGES_ALERT); 
+            this.playAnimation(this.IMAGES_ALERT);
         }
     }
+
+    isMoving() {
+        return this.isMovingLeft();
+    }
+
+    isMovingLeft() {
+        return true;
+    }
+
+    canMoveLeft() {
+        if (this.charachterIsX) {
+            return this.isMovingLeft();
+        }
+    }
+
+
+
 }

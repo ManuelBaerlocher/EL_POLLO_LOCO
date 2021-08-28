@@ -12,6 +12,7 @@ class MovableObject extends DrawableObject {
     hitSomething = false;
     chickenDead = false;
     endbossIsHit = false;
+    charachterIsX = false;
 
 
     applayGravity() {

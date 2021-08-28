@@ -40,10 +40,17 @@ class World {
 
     run() {
         setInterval(() => {
-            
+
             this.checkThrowObjects();
+            this.checkCharacterisX();
 
         }, 200);
+    }
+
+    checkCharacterisX() {
+        if (this.character.x > 1000){
+            this.level.endboss[0].charachterIsX = true;
+        }
     }
 
     twentyMsRun() {
@@ -104,7 +111,7 @@ class World {
                 if (this.throwableObject[0].isColliding(enemy)) {
 
                     this.throwableObject[0].hitSomething = true;
-  
+
                     console.log('Chicken hit with Bottle!')
                     this.currentEnemyremove(enemy);
 
@@ -118,7 +125,7 @@ class World {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
 
-                    
+
                     this.throwableObject[0].hitSomething = true;
                     this.hitanimationEndboss();
                     console.log('Endboss hit with Bottle!')
@@ -136,7 +143,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.isInAir()) {
                     console.log('Chicken dies')
-                this.currentEnemyremove(enemy);
+                    this.currentEnemyremove(enemy);
                 } else {
                     this.hitanimation();
                 }
@@ -208,7 +215,7 @@ class World {
             if (chicken == currentEnemy) {
                 this.level.enemies[i].chickenDead = true;
                 this.level.enemies.splice(i, 1)
-                
+
 
             }
         }
@@ -226,12 +233,12 @@ class World {
     }
 
     hitanimationEndboss() {
-        if (!this.endboss.endbossIsHit){
-        this.endboss.endbossIsHit = true;
-        this.level.endboss[0].hit(30);
-        console.log('Collision with Bottle ', this.level.endboss[0].energy)
+        if (!this.endboss.endbossIsHit) {
+            this.endboss.endbossIsHit = true;
+            this.level.endboss[0].hit(30);
+            console.log('Collision with Bottle ', this.level.endboss[0].energy)
         }
-        
+
 
     }
 
