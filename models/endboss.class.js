@@ -30,7 +30,7 @@ class Endboss extends MovableObject {
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
     ];
 
-    IMAGES_HURT = [ //getroffen Pic's
+    IMAGES_HURT = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G21.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G22.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
@@ -49,7 +49,9 @@ class Endboss extends MovableObject {
 
 
     world;
-    stopMoving = false;
+
+
+
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -57,8 +59,8 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
-        
-        this.x = 2000;
+
+        this.x = 400;
         this.animate();
 
 
@@ -68,45 +70,19 @@ class Endboss extends MovableObject {
 
     animate() {
         /*setInterval(this.move.bind(this), 1000 / 60);*/
-        setInterval(this.play.bind(this), 167);
+        setInterval(() => {
+            this.play();
+        }, 200);
     }
 
 
     play() {
-        if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
+        if (super.isDead()) {
+            super.playAnimation(this.IMAGES_DEAD);
         } else if (super.isHurt()) {
             super.playAnimation(this.IMAGES_HURT);
-        }/* else if (this.isMoving()) {
-            super.playAnimation(this.IMAGES_WALKING);
-        } else if (super.isAttack()) {
-            super.playAnimation(this.IMAGES_ATTACK);
-        } */else {
-            this.playAnimation(this.IMAGES_ALERT);
+        } else {
+            this.playAnimation(this.IMAGES_ALERT); 
         }
-    }
-
-    isMoving() {
-        /*return this.isMovingRight() || this.isMovingLeft();*/
-    }
-
-    isMovingRight() {
-        /*return this.world.keyboard.RIGHT;*/
-    }
-
-    isMovingLeft() {
-       /* return this.world.keyboard.LEFT;*/
-    }
-
-    canMoveRight() {
-        /*return this.isMovingRight() && this.x < this.world.level.level_end_x;*/
-    }
-
-    canMoveLeft() {
-        /*return this.isMovingLeft() && this.x > 120;*/
-    }
-
-    canJump() {
-        /*return this.world.keyboard.UP && !this.isAboveGround();*/
     }
 }

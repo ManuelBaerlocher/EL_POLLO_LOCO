@@ -12,7 +12,7 @@ class World {
     bottlehit = new ThrowableObject();
     coinCounter = 0;
     coinLenght = 0;
-    bottleCounter = 0;
+    bottleCounter = 1000;
     bottleLenght = 0;
 
 
@@ -69,6 +69,7 @@ class World {
 
                 if (bottleY == 358 || this.throwableObject[0].hitSomething) {
                     this.throwableObject.splice(i, 1)
+                    this.endboss.endbossIsHit = false;
                 }
             }
         }
@@ -117,9 +118,9 @@ class World {
             if (this.throwableObject.length > 0) {
                 if (this.throwableObject[0].isColliding(endboss)) {
 
-                    this.hitanimationEndboss();
+                    
                     this.throwableObject[0].hitSomething = true;
-
+                    this.hitanimationEndboss();
                     console.log('Endboss hit with Bottle!')
 
                 }
@@ -219,14 +220,18 @@ class World {
 
 
     hitanimation() {
-        this.character.hit();
+        this.character.hit(5);
         this.statusBar.setPercentage(this.character.energy);
         console.log('Collision with Character, enery ', this.character.energy)
     }
 
     hitanimationEndboss() {
-        this.endboss.hit();
-        console.log('Collision with Bottle ', this.endboss.energy)
+        if (!this.endboss.endbossIsHit){
+        this.endboss.endbossIsHit = true;
+        this.level.endboss[0].hit(30);
+        console.log('Collision with Bottle ', this.level.endboss[0].energy)
+        }
+        
 
     }
 

@@ -4,19 +4,21 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2;
     energy = 100;
+    energyEndboss = 100;
     lastHit = 0;
     lastIdle = 0;
     stopMoving = false;
     bottleColliding = false;
     hitSomething = false;
     chickenDead = false;
+    endbossIsHit = false;
 
 
     applayGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
 
-                if (!this.hitSomething) {
+                if(!this.hitSomething) {
                     this.y -= this.speedY;
                     this.speedY -= this.acceleration;
                 }
@@ -37,8 +39,13 @@ class MovableObject extends DrawableObject {
 
             let i = this.currentImage % images.length
             let path = images[i];
-            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png' || (path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png') || (path == 'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png')) {
+            if (path == 'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png') {
                 this.stopMoving = true;
+            }else if(path == 'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'){
+                this.stopMoving = true;
+            }else if(path == 'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'){
+                this.stopMoving = true;
+                console.log('tod')
             }
             this.img = this.imageCache[path];
 
@@ -77,7 +84,7 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-            }
+            } 
         }, 1000 / 25);
     }
 
@@ -95,10 +102,20 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-    hit() {
-        this.energy -= 2;
+    hit(x) {
+        this.energy -= x;
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        
+    }
+
+    hitEndboss() {
+        this.energyEndboss -= 0.1 ;
+        if (this.energyEndboss < 0) {
+            this.energyEndboss = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -111,7 +128,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        return timepassed < 0.5; 
     }
 
     longIdle() {
@@ -126,7 +143,7 @@ class MovableObject extends DrawableObject {
         return timepassed > 5;
     }
 
-
+ 
 
 
 }
