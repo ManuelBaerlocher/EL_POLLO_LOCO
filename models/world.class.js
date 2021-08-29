@@ -12,7 +12,7 @@ class World {
     bottlehit = new ThrowableObject();
     coinCounter = 0;
     coinLenght = 0;
-    bottleCounter = 1000;
+    bottleCounter = 0;
     bottleLenght = 0;
 
 
