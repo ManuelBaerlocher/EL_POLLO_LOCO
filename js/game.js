@@ -5,14 +5,23 @@ let keyboard = new Keyboard();
 
 
 function init() {
+    checkPositionCanvas();
+}
+
+function startGame() {
+    openCanvas();
+    document.getElementById('startImg').classList.add('d-none');
+}
+
+
+function openCanvas() {
     canvas = document.getElementById('canvas');
 
     world = new World(canvas, keyboard);
-    
-
 
     console.log('My Caracter is', world.character);
 }
+
 
 
 window.addEventListener('keydown', (e) => {

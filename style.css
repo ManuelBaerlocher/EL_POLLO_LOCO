@@ -2,9 +2,48 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Boogaloo', cursive;
+    background-color: #f6bc62;
 }
-
 
 canvas {
-    background-color: black;
+    
+    background-color: transparent;
 }
+
+.gameScreen{
+    transition: ease-in-out 250ms;
+}
+
+.gameScreen img {
+    height: 480px;
+    width: 720px;
+    position: fixed;
+    
+}
+
+.startButton{
+    font-family: 'Boogaloo', cursive;
+}
+
+.gameMenu{
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(0,0,0, 0.2);
+    width: 716px;
+    height: 48px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -4px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
+}
+
+.d-none{
+    display: none;
+}
+
+
+
