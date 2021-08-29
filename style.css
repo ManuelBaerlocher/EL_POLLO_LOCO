@@ -4,14 +4,21 @@ body {
     align-items: center;
     font-family: 'Boogaloo', cursive;
     background-color: #f6bc62;
+    color: rgb(117,76,36);
+    margin: 0;
 }
 
 canvas {
+    
     
     background-color: transparent;
 }
 
 .gameScreen{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     transition: ease-in-out 250ms;
 }
 
@@ -22,14 +29,33 @@ canvas {
     
 }
 
-.startButton{
+.menuButton{
     font-family: 'Boogaloo', cursive;
-}
-
-.gameMenu{
+    font-size: 20px;
     border-width: 2px;
     border-style: solid;
     border-color: rgba(0,0,0, 0.2);
+    border-radius: 4px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    background-color: #ff9900;
+    color: rgb(117,76,36);
+    cursor: pointer;
+    transition: ease-in-out 225ms;
+}
+
+.menuButton:hover{
+    background-color: #b66d01;
+    
+}
+
+.gameMenu{
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(117,76,36, 0.2);
     width: 716px;
     height: 48px;
     display: flex;
@@ -39,6 +65,23 @@ canvas {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     
+}
+
+.guide{
+    display: flex;
+    align-items: center;
+}
+
+.guideTaste{
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(0,0,0, 0.2);
+    border-radius: 4px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    margin-left: 8px;
 }
 
 .d-none{

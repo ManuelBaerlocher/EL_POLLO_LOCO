@@ -78,13 +78,12 @@ class Endboss extends MovableObject {
     }
 
     move() {
-        
+
         if (!this.stopMoving) {
         }
         if (this.canMoveLeft()) {
             if (this.energy > 0) {
                 this.moveLeft();
-                console.log('walk left')
             }
         }
 

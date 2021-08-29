@@ -10,7 +10,13 @@ function init() {
 
 function startGame() {
     openCanvas();
+    changeHTML();
+}
+
+function changeHTML() {
     document.getElementById('startImg').classList.add('d-none');
+    document.getElementById('startButton').classList.add('d-none');
+    document.getElementById('restartButton').classList.remove('d-none');
 }
 
 

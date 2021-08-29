@@ -44,22 +44,35 @@
 
 <body onload="init()">
 
-    
+
 
     <div class="gameScreen">
 
         <canvas id="canvas" width="720" height="480"></canvas>
         <img id="startImg" src="img/9.Intro _ Outro Image/Start Screen/Opción 2.png">
-        
+        <div class="gameMenu">
+            <div class="guide">
+                <span>Walk Left:</span>
+                <div class="guideTaste">A or ←</div>
+            </div>
+            <div class="guide">
+                <span>Walk Right:</span>
+                <div class="guideTaste">D or →</div>
+            </div>
+            <div class="guide">
+                <span>Jump:</span>
+                <div class="guideTaste">W or ↑</div>
+            </div>
+            <div class="guide">
+                <span>Shoot Bottle:</span>
+                <div class="guideTaste">Space</div>
+            </div>
+            <button class="menuButton" id="startButton" onclick="startGame()">Start Game</button>
+            <button class="menuButton d-none" id="restartButton" onclick="startGame()">Restart Game</button>
+        </div>
 
     </div>
-    <div class= "gameMenu">
-        <div>
-            <span>Walk left</span>
-            <div>A or ←</div>
-        </div>
-        <button class="startButton" onclick="startGame()">Start Game</button>
-    </div>
+
 
 </body>
 
