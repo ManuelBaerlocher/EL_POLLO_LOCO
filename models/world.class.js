@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     endboss = new Endboss();
     statusBar = new StatusBar();
+    endbossStatusBar = new EndbossStatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     bottlehit = new ThrowableObject();
@@ -14,6 +15,7 @@ class World {
     coinLenght = 0;
     bottleCounter = 0;
     bottleLenght = 0;
+    
 
 
 
@@ -24,6 +26,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.endbossStatusBar.endbossX = this.level.endboss[0].x
         this.draw();
         this.setWorld();
         this.run();
@@ -31,6 +34,8 @@ class World {
         this.checkBottleRemove();
         this.coinLenght = this.level.coins.length;
         this.bottleLenght = this.level.bottles.length;
+        
+        
 
     }
 
@@ -270,6 +275,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
+        this.addToMap(this.endbossStatusBar);
 
         this.ctx.translate(this.camera_x, 0);
 
