@@ -27,8 +27,9 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.endbossStatusBar.endbossX = this.level.endboss[0].x
-        this.draw();
+        
         this.setWorld();
+        this.draw();
         this.run();
         this.twentyMsRun();
         this.checkBottleRemove();
@@ -240,7 +241,8 @@ class World {
     hitanimationEndboss() {
         if (!this.endboss.endbossIsHit) {
             this.endboss.endbossIsHit = true;
-            this.level.endboss[0].hit(30);
+            this.level.endboss[0].hit(20);
+            this.endbossStatusBar.setPercentage(this.level.endboss[0].energy);
             console.log('Collision with Bottle ', this.level.endboss[0].energy)
         }
 
@@ -275,10 +277,10 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
-        this.addToMap(this.endbossStatusBar);
 
         this.ctx.translate(this.camera_x, 0);
 
+        this.addToMap(this.endbossStatusBar);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);

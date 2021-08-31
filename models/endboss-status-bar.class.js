@@ -16,13 +16,25 @@ class EndbossStatusBar extends MovableObject {
         super();
         this.loadImages(this.IMAGES);
         this.x = 500
-        console.log(this.x)
-        this.y = 70;
+        
+        this.y = 50;
         this.width = 180;
         this.height = 50;
         this.setPercentage(100);
+
+        this.animate();
     }
 
+    animate() {
+
+        setInterval(() => {
+            let endboss = level1.endboss[0];
+            this.x = endboss.x + endboss.width / 2 - 90
+            this.loadImages(this.IMAGES);
+            
+
+        }, 1000 / 60);
+    }
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()]
@@ -34,13 +46,13 @@ class EndbossStatusBar extends MovableObject {
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
-        } else if (this.percentage > 80) {
+        } else if (this.percentage >= 80) {
             return 4;
-        } else if (this.percentage > 60) {
+        } else if (this.percentage >= 60) {
             return 3;
-        } else if (this.percentage > 40) {
+        } else if (this.percentage >= 40) {
             return 2;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage >= 20) {
             return 1;
         } else {
             return 0;
