@@ -44,6 +44,7 @@ canvas {
     color: rgb(117,76,36);
     cursor: pointer;
     transition: ease-in-out 225ms;
+    text-decoration: none;
 }
 
 .menuButton:hover{

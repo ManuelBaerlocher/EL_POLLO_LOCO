@@ -49,10 +49,10 @@ function getLevelChickens() {
 
 function getChickensCollection(firstX) {
     return [
-        /*new Chicken(firstX + 0 * 100),
+        new Chicken(firstX + 0 * 100),
         new Chicken(firstX + 1 * 100),
         new Chicken(firstX + 2 * 100),
-        new Chicken(firstX + 3 * 100),
+        /*new Chicken(firstX + 3 * 100),
         new Chicken(firstX + 4 * 100)*/
     ];
 }

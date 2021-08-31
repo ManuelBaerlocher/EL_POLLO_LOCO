@@ -15,6 +15,15 @@ class World {
     coinLenght = 0;
     bottleCounter = 0;
     bottleLenght = 0;
+
+    background_sound = new Audio('audio/background.mp3') 
+    bottle_sound = new Audio('audio/bottle.mp3')
+    endboss_sound = new Audio('audio/endboss.mp3')
+    collect_sound = new Audio('audio/collect.mp3')
+    collectbottle_sound = new Audio('audio/collect-bottle.mp3')
+    chicken_sound = new Audio('audio/chicken.mp3')
+
+
     
 
 
@@ -35,6 +44,8 @@ class World {
         this.checkBottleRemove();
         this.coinLenght = this.level.coins.length;
         this.bottleLenght = this.level.bottles.length;
+        this.background_sound.play();
+        this.background_sound.volume = 0.02;
         
         
 
@@ -120,6 +131,7 @@ class World {
 
                     console.log('Chicken hit with Bottle!')
                     this.currentEnemyremove(enemy);
+                    this.bottle_sound.play();
 
                 }
             }
@@ -134,6 +146,8 @@ class World {
 
                     this.throwableObject[0].hitSomething = true;
                     this.hitanimationEndboss();
+                    this.endboss_sound.play();
+                    this.endboss_sound.volume = 0.5;
                     console.log('Endboss hit with Bottle!')
 
                 }
@@ -149,6 +163,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.isInAir()) {
                     console.log('Chicken dies')
+                    this.chicken_sound.play();
                     this.currentEnemyremove(enemy);
                 } else {
                     this.hitanimation();
@@ -171,6 +186,7 @@ class World {
 
                 this.currentCoinremove(coin)
                 this.collectCoinbarSet();
+                this.collect_sound.play();
             }
         });
     }
@@ -181,6 +197,7 @@ class World {
 
                 this.currentBottleremove(bottle)
                 this.collectBottlebarSet();
+                this.collectbottle_sound.play();
             }
         });
     }

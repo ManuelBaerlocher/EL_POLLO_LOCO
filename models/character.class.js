@@ -70,6 +70,9 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
 
     world;
     walking_sound = new Audio('audio/walk.mp3') //gehen sound
+    jump_sound = new Audio('audio/jump.mp3')
+    hit_sound = new Audio('audio/hit.mp3')
+    longidle_sound = new Audio('audio/longidle.mp3')
 
     stopMoving = false;
 
@@ -109,6 +112,7 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
             }
             if (this.canJump()) {
                 if (this.energy > 0) {
+                    this.jump_sound.play();
                     this.jump();
                 }
             }
@@ -135,6 +139,7 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
             super.playAnimation(this.IMAGES_DEAD);
         } else if (super.isHurt()) {
             super.playAnimation(this.IMAGES_HURT);
+            this.hit_sound.play();
         } else if (super.isAboveGround()) {
             super.playAnimation(this.IMAGES_JUMPING);
             super.longIdle();
@@ -143,8 +148,11 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
             super.longIdle();
         } else if (super.isLongIdle()) {
             super.playAnimation(this.IMAGES_LONGIDLE);
+            this.longidle_sound.play();
+            this.longidle_sound.volume = 0.2
         } else {
             super.playAnimation(this.IMAGES_IDLE);
+            
 
 
         }
