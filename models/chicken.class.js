@@ -31,8 +31,11 @@ class Chicken extends MovableObject {
         }, 160);
 
         setInterval(() => {
-            /*this.moveLeft();*/
-            if (this.x < x - 150) {
+            if (this.charachterIsX) {
+                this.moveLeft();
+            }
+            
+            /*if (this.x < x - 150) {
                 this.moveRight();
 
                 this.otherDirection = true;
@@ -41,7 +44,7 @@ class Chicken extends MovableObject {
                 this.moveLeft();
 
                 this.otherDirection = false;
-            }
+            }*/
             /*console.log('this.x =', this.x, 'x =', x)*/
 
         }, 1000 / 60);

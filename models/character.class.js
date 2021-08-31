@@ -149,7 +149,7 @@ class Character extends MovableObject { //ist Unterkatogerie von MovableObject
         } else if (super.isLongIdle()) {
             super.playAnimation(this.IMAGES_LONGIDLE);
             this.longidle_sound.play();
-            this.longidle_sound.volume = 0.2
+            this.longidle_sound.volume = 0.2;
         } else {
             super.playAnimation(this.IMAGES_IDLE);
             

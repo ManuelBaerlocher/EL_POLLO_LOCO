@@ -15,8 +15,10 @@ class World {
     coinLenght = 0;
     bottleCounter = 0;
     bottleLenght = 0;
+    endscreen = new Endscreen();
+    test = [];
 
-    background_sound = new Audio('audio/background.mp3') 
+    background_sound = new Audio('audio/background.mp3')
     bottle_sound = new Audio('audio/bottle.mp3')
     endboss_sound = new Audio('audio/endboss.mp3')
     collect_sound = new Audio('audio/collect.mp3')
@@ -24,7 +26,7 @@ class World {
     chicken_sound = new Audio('audio/chicken.mp3')
 
 
-    
+
 
 
 
@@ -36,7 +38,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.endbossStatusBar.endbossX = this.level.endboss[0].x
-        
+
         this.setWorld();
         this.draw();
         this.run();
@@ -46,8 +48,8 @@ class World {
         this.bottleLenght = this.level.bottles.length;
         this.background_sound.play();
         this.background_sound.volume = 0.02;
-        
-        
+
+
 
     }
 
@@ -60,12 +62,26 @@ class World {
 
             this.checkThrowObjects();
             this.checkCharacterisX();
+            this.checkHowisDead();
 
         }, 200);
     }
 
+    checkHowisDead() {
+        let endboss = level1.endboss[0].energy;
+        let characterenergy = this.character.energy;
+
+        if (characterenergy == 0) {
+
+            this.test.push(new Endscreen('img/9.Intro _ Outro Image/_Game over_ screen/2.oh no you lost!.png'))
+        } else if (endboss == 0) {
+
+            this.test.push(new Endscreen('img/9.Intro _ Outro Image/_Game over_ screen/4.Game over!.png'))
+        }
+    }
+
     checkCharacterisX() {
-        if (this.character.x > 1000){
+        if (this.character.x > 1000) {
             this.level.endboss[0].charachterIsX = true;
         }
     }
@@ -105,7 +121,9 @@ class World {
             if (this.bottleCounter > 0) {
                 if (this.keyboard.SPACE) {
                     let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+
                     this.throwableObject.push(bottle);
+
                     this.bottleCounter--;
                     this.collectBottlebarSet();
                     this.character.longIdle();
@@ -295,6 +313,7 @@ class World {
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
 
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.endbossStatusBar);
@@ -306,7 +325,15 @@ class World {
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObject);
 
+
         this.ctx.translate(-this.camera_x, 0);
+
+        this.addObjectsToMap(this.test);
+
+        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(-this.camera_x, 0);
+
+
 
         // Draw() wird immer wieder aufgerufen
         let self = this;

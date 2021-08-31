@@ -31,7 +31,7 @@ class Cloud extends MovableObject {
     }
 
     resetCloud() {
-        if (this.x < 100) {
+        if (this.x < -100) {
             this.x = 5300;
 
 

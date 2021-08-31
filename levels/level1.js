@@ -20,6 +20,9 @@ const level1 = new Level(
     ],
 
     [
+        new Bottle(200),
+        new Bottle(250),
+        new Bottle(300),
         new Bottle(400),
         new Bottle(800),
         new Bottle(900),
@@ -49,11 +52,11 @@ function getLevelChickens() {
 
 function getChickensCollection(firstX) {
     return [
-        new Chicken(firstX + 0 * 100),
+       /* new Chicken(firstX + 0 * 100),
         new Chicken(firstX + 1 * 100),
-        new Chicken(firstX + 2 * 100),
-        /*new Chicken(firstX + 3 * 100),
-        new Chicken(firstX + 4 * 100)*/
+        new Chicken(firstX + 2 * 100),*/
+        new Chicken(firstX + 3 * 100),
+        new Chicken(firstX + 4 * 100)
     ];
 }
 
