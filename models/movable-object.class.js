@@ -13,6 +13,7 @@ class MovableObject extends DrawableObject {
     chickenDead = false;
     endbossIsHit = false;
     charachterIsX = false;
+    charachterIsXforChicken = false;
     endbossX;
     
 

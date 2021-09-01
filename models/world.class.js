@@ -84,6 +84,13 @@ class World {
         if (this.character.x > 1000) {
             this.level.endboss[0].charachterIsX = true;
         }
+        if (this.character.x > 200) {
+            for (let i = 0; i < this.level.enemies.length; i++) {
+                let chickenisX = this.level.enemies[i].charachterIsXforChicken;
+                chickenisX = true;
+            }
+            
+        }
     }
 
     twentyMsRun() {
